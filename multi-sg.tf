@@ -1,10 +1,11 @@
 provider "aws" {
-  access_key = ""
-  secret_key = ""
+  # access_key = ""
+  # secret_key = ""
   region     = "us-west-1"
 }
 resource "aws_security_group" "dc-security-group" {
   name        = "dc-security-group"
+  vpc_id      = "vpc-3cc85c58"
   description = "Allow Domain Controller ports and protocols inbound"
 
   ingress {
@@ -127,12 +128,12 @@ resource "aws_security_group" "dc-security-group" {
     protocol    = "tcp"
     cidr_blocks = ["10.44.4.0/24"]
   }
-  ingress {
-    from_port   = 3269
-    to_port     = 3269
-    protocol    = "tcp"
-    security_groups = ["sg-8f8db4e8"]
-  }
+#  ingress {
+#    from_port   = 3269
+#    to_port     = 3269
+#    protocol    = "tcp"
+#    security_groups = ["sg-8f8db4e8"]
+#  }
   ingress {
     from_port   = 445
     to_port     = 445
@@ -145,11 +146,113 @@ resource "aws_security_group" "dc-security-group" {
     protocol    = "udp"
     cidr_blocks = ["10.0.0.0/8"]
   }
+#  ingress {
+#    from_port   = 138
+#    to_port     = 138
+#    protocol    = "udp"
+#    security_groups = ["sg-8f8db4e8"]
+#  }
   ingress {
-    from_port   = 138
-    to_port     = 138
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["10.44.4.0/22"]
+  }
+  ingress {
+    from_port   = 464
+    to_port     = 464
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/8"]
+  }
+  ingress {
+    from_port   = 5355
+    to_port     = 5355
     protocol    = "udp"
-    security_groups = ["sg-8f8db4e8"]
+    cidr_blocks = ["10.44.6.0/24"]
+  }
+  ingress {
+    from_port   = 5355
+    to_port     = 5355
+    protocol    = "udp"
+    cidr_blocks = ["10.44.7.0/24"]
+  }
+  ingress {
+    from_port   = 5722
+    to_port     = 5722
+    protocol    = "tcp"
+    cidr_blocks = ["10.44.6.0/24"]
+  }
+  ingress {
+    from_port   = 5722
+    to_port     = 5722
+    protocol    = "tcp"
+    cidr_blocks = ["10.44.7.0/24"]
+  }
+  ingress {
+    from_port   = 389
+    to_port     = 389
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/8"]
+  }
+  ingress {
+    from_port   = 123
+    to_port     = 123
+    protocol    = "udp"
+    cidr_blocks = ["10.0.0.0/8"]
+  }
+  ingress {
+    from_port   = 3268
+    to_port     = 3268
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/8"]
+  }
+  ingress {
+    from_port   = 9389
+    to_port     = 9389
+    protocol    = "tcp"
+    cidr_blocks = ["10.44.6.0/24"]
+  }
+  ingress {
+    from_port   = 9389
+    to_port     = 9389
+    protocol    = "tcp"
+    cidr_blocks = ["10.44.7.0/24"]
+  }
+#  ingress {
+#    from_port   = 9389
+#    to_port     = 9389
+#    protocol    = "tcp"
+#    security_groups = ["sg-8f8db4e8"]
+#  }
+  ingress {
+    from_port   = 88
+    to_port     = 88
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/8"]
+  }
+#  ingress {
+#    from_port   = 0
+#    to_port     = 65535
+#    protocol    = "tcp"
+#    security_groups = ["sg-0d34e776 (Nessus_Scans_awstmc-prdcp01)"]
+#  }
+  ingress {
+    from_port   = 137
+    to_port     = 137
+    protocol    = "udp"
+    cidr_blocks = ["10.0.0.0/8"]
+  }
+  ingress {
+    from_port   = 636
+    to_port     = 636
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/8"]
+  }
+  ingress {
+    from_port   = 88
+    to_port     = 88
+    protocol    = "udp"
+    cidr_blocks = ["10.0.0.0/8"]
   }
   egress {
      from_port = 0

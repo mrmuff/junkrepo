@@ -1,0 +1,4 @@
+Private subnet 1A   10.70.4.0/24    us-west-2a
+Private subnet 2A   10.70.6.0/24    us-west-2b
+Public subnet 1     10.70.5.0/24    us-west-2a
+Public subnet 2     10.70.7.0/24    us-west-2b
