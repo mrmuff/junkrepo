@@ -1,0 +1,8 @@
+# empty ingress block
+
+ingress {
+  from_port   = 
+  to_port     =
+  protocol    = ""
+  cidr_blocks = [""]
+}
